@@ -1,0 +1,139 @@
+$menuitem_border_radius: 0;
+
+//container of the popup menu
+.menu {
+  min-width: 15em;
+  color: $primary_fg;
+  // room for the Material shadow below the card
+  padding: 3px 5px 10px;
+}
+
+// popup content
+.popup-menu-content {
+  @extend %popup_card;
+  padding: 0.3em 0;
+}
+
+// menu items
+.popup-menu-item {
+  @extend %menuitem;
+
+  &:active {
+    background-color: $hover_color;
+    color: $fg_color;
+  }
+
+
+  &:insensitive {
+    color: $insensitive_fg_color;
+    background: none;
+  }
+}
+
+// Used in the battery applet for the status
+// .popup-inactive-menu-item {
+//   color: $fg_color;
+
+//   &:insensitive { color: $insensitive_fg_color; }
+// }
+
+.popup-slider-menu-item {
+  @extend %slider;
+}
+
+// icons in menus
+.popup-menu-arrow,
+.popup-menu-icon {
+  icon-size: $scalable_icon_size;
+}
+
+// popup submenus
+// Plata: an inset well, full width, with a soft top shadow
+.popup-sub-menu {
+  border-radius: 0;
+  margin: 0;
+  padding-bottom: 1px;
+  border: 0 none transparent;
+  border-bottom: 1px solid $frame_color;
+  background-color: $submenu_bg;
+  box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.12);
+
+  .popup-menu-item {
+    border-radius: 0;
+    @extend %menuitem;
+    background-color: transparent;
+    margin: 0;
+
+    &:active { background-color: $hover_color; color: $fg_color; }
+
+    &:first-child,
+    &:last-child,
+    &:only-child,
+    &:first-child:last-child {
+      border-radius: 0;
+    }
+  }
+
+  StScrollBar {
+    padding: 4px;
+    StBin#trough, StBin#vhandle { border-width: 0; }
+  }
+}
+
+// This is the first submenu item that contains the arrow
+.popup-submenu-menu-item {
+  &:open { background-color: $hover_color; color: $fg_color; }
+  &:active {}
+}
+
+// separator
+.popup-separator-menu-item {
+  margin: 0.3em 0;
+  -gradient-height: 1px;
+  -gradient-start: $separator_color;
+  -gradient-end: $separator_color;
+  -margin-horizontal: 0;
+  height: 1px;
+}
+
+// scale view context menu - just duplicating regular popupmenu here
+.popup-combo-menu {
+  @extend %popup_card;
+  padding: 0.3em 0;
+}
+
+// Used by the recents applet
+.popup-combobox-item {
+  @extend %menuitem;
+
+  padding: 0 $base_padding * 2;
+}
+
+// this is not currently being used anywhere
+.popup-alternating-menu-item:alternate { font-weight: 500; }
+
+// Used in the power applet for display of battery items
+.popup-device-menu-item {
+  spacing: .5em;
+
+  @extend %heading;
+  color: $fg_color;
+
+  &:insensitive { color: $fg_color; }
+
+  .popup-inactive-menu-item {
+    font-weight: normal;
+    color: $fg_color;
+  }
+}
+
+// Used in window quick list and power applet
+.popup-subtitle-menu-item { font-weight: normal; }
+
+// Used to set the color of the signal strength icons in network applet
+.nm-menu-item-icons { spacing: .5em; }
+
+.wireless-active:insensitive { color: $error_color; }
+
+// dot shown next to the active radio-style item (popupMenu.js)
+.popup-menu-item-dot { color: $accent_color; }

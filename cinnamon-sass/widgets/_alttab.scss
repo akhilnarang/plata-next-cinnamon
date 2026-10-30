@@ -1,0 +1,69 @@
+#altTabPopup {
+  padding: $base_margin * 2;
+  spacing: $base_margin * 4;
+}
+
+.switcher-list {
+  color: $fg_color;
+  background-color: $osd_bg;
+  border: 0 none transparent;
+  border-radius: $larger_border_radius;
+  box-shadow: $z_dialog_shadow;
+  padding: 20px;
+
+  &-item-container { spacing: $base_margin * 3; }
+
+  .item-box {
+    padding: $base_margin * 2;
+    border: 2px solid transparent;
+    border-radius: $popup_border_radius;
+    background-color: transparent;
+
+    // this doesn't ever seem to get used
+    &:outlined { border-color: $track_color; }
+    &:selected {
+      background-color: $highlight_color;
+      color: $accent_text_color;
+    }
+  }
+
+  .thumbnail-box {
+    padding: 2px;
+    spacing: $base_margin;
+  }
+
+  .thumbnail { width: 256px; }
+}
+
+.switcher-preview-backdrop { background-color: rgba(0, 0, 0, 0.54); }
+
+.switcher-arrow {
+  background-color: transparent;
+  border-color: transparent;
+  color: $fg_color;
+
+  &:highlighted { color: $accent_color; }
+}
+
+.thumbnail-scroll-gradient {
+
+  &-left {
+    background-gradient-direction: horizontal;
+    background-gradient-start: $osd_bg;
+    background-gradient-end: transparentize($bg_color, 1.0);
+    border-radius: $larger_border_radius;
+    border-radius-topright: 0px;
+    border-radius-bottomright: 0px;
+    width: 60px;
+  }
+
+  &-right {
+    background-gradient-direction: horizontal;
+    background-gradient-start: transparentize($bg_color, 1.0);
+    background-gradient-end: $osd_bg;
+    border-radius: $larger_border_radius;
+    border-radius-topleft: 0px;
+    border-radius-bottomleft: 0px;
+    width: 60px;
+  }
+}

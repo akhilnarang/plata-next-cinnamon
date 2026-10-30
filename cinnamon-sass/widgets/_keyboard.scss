@@ -1,0 +1,80 @@
+/* On-screen Keyboard */
+
+$key_border_radius: $base_border_radius;
+
+$default_key_bg_color: $bg_color;
+$non_alpha_key_color: if($dark, #1d1d1d, #f8f8f8);
+$shifted_key_color: if($dark, #434343, #b2b2b2);
+
+#virtual-keyboard {
+  background-color: $scrim_color;
+}
+
+// the container for individual keys
+.vkeyboard-key-container {
+  padding: $base_margin;
+  spacing: $base_margin;
+}
+
+// solid key states: translucent overlays would show the window behind the keyboard
+@mixin key_states($bg) {
+  background-color: $bg;
+  &:focus { box-shadow: inset 0 0 0 2px transparentize($selection_color, 0.6); }
+  &:hover, &:checked { background-color: mix($fg_color, $bg, 12%); }
+  &:active { background-color: mix($fg_color, $bg, 25%); }
+}
+
+// the keys
+.vkeyboard-key {
+  @include fontsize(20px);
+  border: 1px solid $borders_color;
+  border-radius: $key_border_radius;
+  color: $primary_fg;
+  font-weight: bold;
+
+  @include key_states($default_key_bg_color);
+
+  &.shift-key-lowercase, &.escape-key, &.hide-key, &.non-alpha-key {
+    @include key_states($non_alpha_key_color);
+  }
+
+  &.shift-key-uppercase {
+    @include key_states($shifted_key_color);
+  }
+
+  &.enter-key {
+    color: white;
+    background-color: $selection_color;
+    &:hover, &:checked { background-color: lighten($selection_color, 8%); }
+    &:active { background-color: darken($selection_color, 8%); }
+  }
+
+  &.modifier-key {
+    @include key_states($non_alpha_key_color);
+
+    &:latched {
+      background-color: $shifted_key_color;
+    }
+  }
+
+  StIcon { icon-size: 1.125em; }
+}
+
+// long press on a key popup
+.vkeyboard-subkeys {
+  color: $fg_color;
+  -arrow-border-radius: $popup_border_radius;
+  -arrow-background-color: $bg_color;
+  -arrow-border-width: 1px;
+  -arrow-border-color: $borders_color;
+  -arrow-base: 20px;
+  -arrow-rise: 10px;
+  -boxpointer-gap: $base_padding;
+}
+
+// suggestions
+.word-suggestions {
+  @include fontsize(18px);
+  spacing: 20px;
+  min-height: 20pt;
+}

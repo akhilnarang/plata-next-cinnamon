@@ -1,0 +1,68 @@
+// Plata's rendered Material assets (assets/<variant>/ in this repo, installed as cinnamon/assets/)
+// these are equal to the size of the svg
+$switch_height: 20px;
+$switch_width: 40px;
+
+$check_height: 16px;
+$check_width: 16px;
+
+$asset_check_off: url("assets/checkbox/checkbox-unchecked.svg");
+$asset_check_on: url("assets/checkbox/checkbox-checked.svg");
+$asset_radio_off: url("assets/checkbox/radiobutton-unchecked.svg");
+$asset_radio_on: url("assets/checkbox/radiobutton-checked.svg");
+
+// switch
+
+.toggle-switch {
+  height: $switch_height;
+  width: $switch_width;
+  background-size: contain;
+  background-image: url("assets/switch/switch-off.svg");
+
+  &:checked { background-image: url("assets/switch/switch-on.svg"); }
+}
+
+// check
+
+.check-box {
+  CinnamonGenericContainer { spacing: 0.8em; }
+
+  StBin {
+    width: $check_width;
+    height: $check_height;
+    background-image: $asset_check_off;
+  }
+  &:focus StBin { background-image: $asset_check_off; }
+  &:checked StBin { background-image: $asset_check_on; }
+  &:focus:checked StBin { background-image: $asset_check_on; }
+}
+
+// New CheckBoxes
+
+.check-box-2 {
+  StBoxLayout { spacing: 0.8em; }
+
+  StBin {
+    width: $check_width;
+    height: $check_height;
+    background-image: $asset_check_off;
+  }
+  &:focus StBin { background-image: $asset_check_off; }
+  &:checked StBin { background-image: $asset_check_on; }
+  &:focus:checked StBin { background-image: $asset_check_on; }
+}
+
+// radio
+
+.radiobutton {
+  CinnamonGenericContainer { spacing: 0.8em; }
+
+  StBin {
+    width: $check_width;
+    height: $check_height;
+    background-image: $asset_radio_off;
+  }
+  &:focus StBin { background-image: $asset_radio_off; }
+  &:checked StBin { background-image: $asset_radio_on; }
+  &:focus:checked StBin { background-image: $asset_radio_on; }
+}

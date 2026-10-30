@@ -1,0 +1,197 @@
+
+// grouped window list
+
+.grouped-window-list {
+  &-box {}
+
+  &-item-label {
+    width: 15em;
+    min-width: 5px;
+  }
+
+  // Plata: flat item, faint edge line while running, indigo edge line + tint when focused
+  &-item-box {
+    padding: 0 $base_padding;
+    color: $fg_color;
+    background-color: $hidden_bg;
+    transition-duration: 170ms;
+
+    &.top,
+    &.bottom { padding: 0 $base_padding; }
+
+    &.right,
+    &.left {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    &.right StBin { padding-right: 0; }
+    &.left StBin { padding-left: 1px; }
+
+    &:hover { background-color: $hover_color; }
+    &:focus { background-color: $hover_color; }
+    &:active { color: $fg_color; }
+
+    @each $side in top, bottom, left, right {
+      &.#{$side}:active { @include edge_line($side, $track_color); }
+      &.#{$side}:focus { @include edge_line($side, $selection_color); }
+    }
+
+    & .progress { background-color: transparentize($success_color, 0.46); }
+  }
+
+  &-item-demands-attention { background-color: $highlight_color; }
+
+  &-thumbnail-label { padding-left: 4px; }
+  &-thumbnail-alert { background: $highlight_color; }
+
+  &-thumbnail-menu {
+    border: 0 none transparent;
+    margin: 6px;
+    color: $fg_color;
+    background-color: $osd_bg;
+    border-radius: $larger_border_radius;
+    box-shadow: $z_dialog_shadow;
+
+    > StBoxLayout { padding: 4px; }
+
+    .item-box {
+      padding: 10px;
+      spacing: 4px;
+      border-radius: $popup_border_radius;
+
+      &:first-child,
+      &:last-child { border-radius: $popup_border_radius; }
+
+      &:outlined {
+        padding: 8px;
+        border: 2px solid $track_color;
+
+        &:first-child,
+        &:last-child { border-radius: $popup_border_radius; }
+      }
+
+      &:selected {
+        background-color: $highlight_color;
+        color: $accent_text_color;
+
+        &:only-child,
+        &:first-child:last-child,
+        &:first-child,
+        &:last-child { border-radius: $popup_border_radius; }
+      }
+    }
+
+    .thumbnail { width: 256px; }
+    .separator {
+      width: 1px;
+      background-color: $separator_color;
+    }
+  }
+
+  &-button-label { padding-left: 4px;}
+
+  &-number-label {
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  &-badge {
+    border-radius: 99px;
+    background-color: $tooltip_bg;
+    color: $fg_color;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.28);
+  }
+
+  &-notifications-badge {
+    border-radius: 99px;
+    background-color: $notification_badge_bg_color;
+    color: white;
+  }
+
+  &-notifications-badge-label {
+    font-size: 12px;
+  }
+}
+
+// classic window list
+
+.window-list {
+  &-box {
+    spacing: $base_padding;
+    padding-left: $base_padding;
+    padding-top: 1px;
+
+    &.vertical {
+      spacing: $base_margin;
+      padding: $base_padding 0;
+    }
+
+    &:highlight { background-color: $highlight_color; }
+  }
+
+  &-item-label {}
+
+  &-item-box {
+    padding: 0 $base_padding;
+    color: $primary_fg;
+    background-color: $hidden_bg;
+    transition-duration: 170ms;
+
+    &.top,
+    &.bottom {
+      padding: 0 $base_padding;
+
+      StLabel { padding-left: 2px; }
+    }
+
+    &.right {
+      padding-left: 0;
+      padding-right: 0;
+
+      StBin {
+        padding-right: 0;
+        padding-left: 5px;
+      }
+    }
+
+    &.left {
+      padding-left: 0;
+      padding-right: 0;
+
+      StBin {
+        padding-left: 0;
+        padding-right: 5px;
+      }
+    }
+
+    &:hover {
+      color: $fg_color;
+      background-color: $hover_color;
+    }
+
+    &:focus {
+      color: $fg_color;
+      background-color: $hover_color;
+    }
+
+    @each $side in top, bottom, left, right {
+      &.#{$side} { @include edge_line($side, $track_color); }
+      &.#{$side}:focus { @include edge_line($side, $selection_color); }
+    }
+
+    & .progress { background-color: transparentize($success_color, 0.46); }
+  }
+
+  &-item-demands-attention { background-color: $highlight_color; }
+
+  &-preview {
+    border: 0 none transparent;
+    color: $fg_color;
+    background-color: $osd_bg;
+    border-radius: $larger_border_radius;
+    padding: 12px;
+    spacing: 8px;
+    box-shadow: $z_dialog_shadow;
+  }
+}

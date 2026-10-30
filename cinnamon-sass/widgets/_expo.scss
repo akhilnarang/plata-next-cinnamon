@@ -1,0 +1,105 @@
+
+.workspace {
+
+  &-thumbnails { spacing: 26px; }
+  &-thumbnails-background { padding: 8px; }
+
+  // this controls both the darkness of thumbnails in expo and
+  // the darkness of the overiew backgroound
+  &-overview-background-shade { background-color: $scrim_color; }
+
+  &-add-button {
+    background-image: url("assets/misc/add-workspace.svg");
+    height: 200px;
+    width: 35px;
+    transition-duration: 170;
+
+    &:hover {
+      background-image: url("assets/misc/add-workspace-hover.svg");
+      transition-duration: 170;
+    }
+
+    &:active { background-image: url("assets/misc/add-workspace-active.svg"); }
+  }
+
+  &-close-button {
+    background-image: url("assets/misc/close.svg");
+    background-size: 36px;
+    height: 36px;
+    width: 36px;
+    -cinnamon-close-overlap: 24px;
+
+    &:hover { background-image: url("assets/misc/close-hover.svg"); }
+    &:active { background-image: url("assets/misc/close-active.svg"); }
+  }
+}
+
+.expo {
+
+  &-background { background-color: $scrim_color; }
+
+  &-workspace-thumbnail-frame {
+    border: 2px solid $track_color;
+    border-radius: $base_border_radius;
+    background-color: transparent;
+
+    &#active {
+      border-color: $selection_color;
+      border-width: 2px;
+    }
+  }
+
+  &-workspaces-name-entry {
+    @extend %entry;
+
+    height: 1.5em;
+    font-weight: bold;
+    -cinnamon-caption-spacing: 12px;
+
+    &#selected { color: $fg_color; caret-color: $fg_color; }
+    &:focus {}
+  }
+}
+
+.window {
+
+  &-close-area {
+    background-image: url("assets/misc/trash-icon.svg");
+    height: 120px;
+    width: 400px;
+  }
+
+  &-close {
+    background-image: url("assets/misc/close.svg");
+    background-size: 36px;
+    height: 36px;
+    width: 36px;
+    -cinnamon-close-overlap: 24px;
+
+    &:hover { background-image: url("assets/misc/close-hover.svg"); }
+    &:active { background-image: url("assets/misc/close-active.svg"); }
+  }
+
+  &-border {
+    border: 4px solid $selection_color;
+    border-radius: $base_border_radius;
+  }
+
+  &-caption {
+    min-height: 22px;
+    max-width: 20em;
+    border-radius: $base_border_radius;
+    padding: 0.3em 0.9em 0.4em;
+    spacing: $base_margin;
+    border: 0 none transparent;
+    color: $fg_color;
+    background-color: $osd_bg;
+    -cinnamon-caption-spacing: 12px;
+
+    &:focus { background-color: $selection_color; color: white; }
+  }
+}
+
+#overview { spacing: 12px; }
+
+.overview-empty-placeholder { @extend %large_title; }

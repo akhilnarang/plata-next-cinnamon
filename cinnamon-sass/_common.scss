@@ -1,0 +1,208 @@
+$base_padding: 6px;
+$base_margin: 4px;
+
+// Plata radii
+$base_border_radius: 2.5px;      // buttons, tooltips, list items
+$popup_border_radius: 4.5px;     // menus, entries (top corners), cards
+$larger_border_radius: 8.5px;    // dialogs, osds, switcher
+
+$modal_dialog_radius: $larger_border_radius;
+
+$scalable_icon_size: to_em(16px);
+
+// stage
+stage {
+  color: $fg_color;
+  font-family: Roboto, Sans-Serif;
+  font-weight: 400;
+}
+
+%entry_common {
+  min-height: 1.2em;
+  border-radius: $popup_border_radius $popup_border_radius 0 0;
+  padding: 7px 8px 8px;
+  border: 0 none transparent;
+  caret-size: 1px;
+  selected-color: white;
+  selection-background-color: $selection_color;
+}
+
+%button_common {
+  min-height: 1.4em;
+  border-radius: $base_border_radius;
+  border: 0 none transparent;
+  padding: 7px 16px 8px;
+  font-weight: 500;
+}
+
+%button {
+  @extend %button_common;
+  @include button(normal);
+  &:focus { @include button(focus); }
+  &:hover { @include button(hover); }
+  &:active { @include button(active); }
+  &:checked { @include button(checked); }
+  &:insensitive { @include button(insensitive); }
+}
+
+%flat_button {
+  @include button(normal, $style: flat);
+  &:focus { @include button(focus, $style: flat); }
+  &:hover { @include button(hover, $style: flat); }
+  &:insensitive { @include button(insensitive, $style: flat); }
+  &:selected,
+  &:active { @include button(active, $style: flat); }
+  &:checked { @include button(checked, $style: flat); }
+}
+
+%entry {
+  @extend %entry_common;
+  @include entry(normal);
+  &:hover { @include entry(hover); }
+  &:focus { @include entry(focus); }
+  &:insensitive { @include entry(insensitive); }
+
+  StLabel.hint-text { color: $secondary_fg; }
+
+  .capslock-warning {
+    icon-size: $scalable_icon_size;
+    warning-color: $warning_color;
+    padding: 0 2px;
+  }
+
+  StIcon.peek-password {
+    icon-size: 16px;
+    color: $secondary_fg;
+  }
+}
+
+// buttons in dialogs: Plata uses flat, accent-coloured text buttons
+
+// Plata: every dialog button is a bold accent text button
+%dialog_button {
+  font-weight: 700;
+  padding: 7px 16px 8px;
+  border: 0 none transparent;
+  border-radius: $base_border_radius;
+
+  @include button(normal, $c: $accent_text_color, $style: default);
+  color: transparentize($accent_text_color, 0.13);
+  &:focus { @include button(focus, $c: $accent_text_color, $style: default); }
+  &:hover { @include button(hover, $c: $accent_text_color, $style: default); }
+  &:active { @include button(active, $c: $accent_text_color, $style: default); }
+  &:checked { @include button(checked, $c: $accent_text_color, $style: default); }
+  &:insensitive { @include button(insensitive); }
+}
+
+// default button: full-opacity accent text (the others are 87%)
+%dialog_button_default {
+  @extend %dialog_button;
+
+  @include button(normal, $c: $accent_text_color, $style: default);
+  &:focus { @include button(focus, $c: $accent_text_color, $style: default); }
+  &:hover { @include button(hover, $c: $accent_text_color, $style: default); }
+  &:active { @include button(active, $c: $accent_text_color, $style: default); }
+  &:checked { @include button(checked, $c: $accent_text_color, $style: default); }
+  &:insensitive { @include button(insensitive); }
+}
+
+%dialog_button_destructive {
+  @extend %dialog_button;
+
+  @include button(normal, $c: $destructive_text_color, $style: default);
+  &:focus { @include button(focus, $c: $destructive_text_color, $style: default); }
+  &:hover { @include button(hover, $c: $destructive_text_color, $style: default); }
+  &:active { @include button(active, $c: $destructive_text_color, $style: default); }
+  &:checked { @include button(checked, $c: $destructive_text_color, $style: default); }
+  &:insensitive { @include button(insensitive); }
+}
+
+// items in menus
+%menuitem {
+  font-weight: normal;
+  spacing: 1em;
+  transition-duration: 170ms;
+  padding: 0.4em 1.75em;
+  margin: 0;
+  border-radius: 0;
+  color: $primary_fg;
+}
+
+/* General Typography */
+%large_title {
+  font-weight: 300;
+  @include fontsize(24pt);
+}
+
+%title_1 {
+  font-weight: 400;
+  @include fontsize(20pt);
+}
+
+%title_2 {
+  font-weight: 500;
+  @include fontsize(15pt);
+}
+
+%title_3 {
+  font-weight: 500;
+  @include fontsize(15pt);
+}
+
+%title_4 {
+  font-weight: 500;
+  @include fontsize(13pt);
+}
+
+%heading {
+  font-weight: 500;
+  @include fontsize(10pt);
+}
+
+%caption_heading {
+  font-weight: 500;
+  @include fontsize(9pt);
+}
+
+%caption {
+  font-weight: 400;
+  @include fontsize(9pt);
+}
+
+%smaller {
+  font-weight: 400;
+  @include fontsize(8pt);
+}
+
+// Plata slider: thin track, indigo fill, round knob
+%slider {
+  height: 16px;
+  min-width: 15em;
+  color: $primary_color;
+  -slider-height: 2px;
+  -slider-background-color: $track_color;
+  -slider-active-background-color: $primary_color;
+  -slider-border-color: transparent;
+  -slider-active-border-color: transparent;
+  -slider-border-width: 0;
+  -slider-handle-radius: 8px;
+}
+
+%osd_base {
+  color: $fg_color;
+  background-color: $osd_bg;
+  border: 0 none transparent;
+  border-radius: $larger_border_radius;
+  box-shadow: $z_dialog_shadow;
+  text-align: center;
+  padding: 20px;
+}
+
+// floating card used by menus, previews and popups
+%popup_card {
+  color: $primary_fg;
+  background-color: $bg_color;
+  border: 1px solid $borders_color;
+  border-radius: $popup_border_radius;
+  box-shadow: $z_menu_shadow;
+}

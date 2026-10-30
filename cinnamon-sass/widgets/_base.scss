@@ -1,0 +1,178 @@
+.flashspot { background-color: white; }
+
+// Caps-lock warning
+.caps-lock-warning-label {
+  text-align: center;
+  padding-bottom: 8px;
+  @extend %caption;
+  color: $warning_text_color;
+}
+
+// links
+.cinnamon-link {
+  color: $link_color;
+  border-radius: $base_border_radius;
+  text-decoration: underline;
+
+  &:hover {
+    color: $link_color;
+    background-color: transparentize($link_color, 0.88);
+  }
+
+  &:active { background-color: transparentize($link_color, 0.75); }
+}
+
+// lightbox
+
+.lightbox { background-color: rgba(0, 0, 0, 0.54); }
+
+// looking glass dialog
+
+#LookingGlassDialog {
+  @extend %osd_base;
+
+  text-align: left;
+  padding: $base_padding;
+  spacing: $base_margin;
+}
+
+// magnifier
+
+.magnifier-zoom {
+
+  &-region {
+    border: 2px solid $selection_color;
+
+    &.full-screen { border-width: 0; }
+  }
+}
+
+// pie timer
+
+.pie-timer {
+  width: 30px;
+  height: 30px;
+  -pie-border-width: 1px;
+  -pie-border-color: $primary_color;
+  -pie-background-color: transparentize($primary_color, 0.46);
+}
+
+// ripples
+
+.ripple-pointer-location {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  background-color: transparentize($primary_color, 0.46);
+  box-shadow: 0 0 2px 2px transparentize($primary_color, 0.6);
+}
+
+// Plata draws the hot-corner ripple as a plain indigo disc
+.ripple-box {
+  width: 104px;
+  height: 104px;
+  border-radius: 104px;
+  background-color: transparentize($primary_color, 0.46);
+  box-shadow: none;
+
+  &:rtl { background-color: transparentize($primary_color, 0.46); }
+}
+
+// scrollbars
+StScrollView.vfade { -st-vfade-offset: 68px; }
+StScrollView.hfade { -st-hfade-offset: 68px; }
+
+StScrollBar {
+
+  StScrollView & {
+    min-height: 0.75em;
+    min-width: 0.75em;
+  }
+
+  StBin#trough {
+    background-color: transparentize($fg_color, 0.95);
+    border-radius: 999px;
+  }
+
+  StButton#vhandle,
+  StButton#hhandle {
+    background-color: transparentize($fg_color, 0.7084);
+    border-radius: 999px;
+    margin: 2px;
+
+    &:hover { background-color: transparentize($fg_color, 0.5302); }
+    &:active { background-color: $fg_color; }
+  }
+}
+
+// separator
+
+.separator {
+  -gradient-height: 1px;
+  -gradient-start: $separator_color;
+  -gradient-end: $separator_color;
+  -margin-horizontal: 0;
+  height: 1px;
+}
+
+// slider
+
+.slider {
+  @extend %slider;
+}
+
+// tile previews
+
+.tile-preview {
+  background-color: transparentize($selection_color, 0.8);
+  border: 1px solid $selection_color;
+}
+
+#Tooltip {
+  padding: 7px 8px 8px;
+  margin: $base_margin;
+  border-radius: $base_border_radius;
+  background-color: $tooltip_bg;
+  color: $fg_color;
+  box-shadow: none;
+  font-weight: 400;
+  text-align: center;
+}
+
+// user avatar
+
+.user-icon {
+  background-size: contain;
+  border-radius: 99px;
+  color: $fg_color;
+  border-color: transparent;
+
+  & StIcon {
+    padding: $base_padding * 2;
+    border: 1px solid transparent;
+    border-radius: 99px;
+  }
+
+  &.user-avatar {
+    border: transparent;
+    border-radius: 99px;
+  }
+
+  StIcon.highlighted {
+      border: 1px solid $selection_color;
+      border-radius: 99px;
+  }
+}
+
+.user-widget-label {}
+
+.user-widget.horizontal { spacing: $base_padding; }
+
+.user-widget.vertical { spacing: $base_padding; }
+
+.user-widget.vertical .user-widget-label {
+  font-weight: 700;
+  @include fontsize(13pt);
+  color: $fg_color;
+  text-align: center;
+}

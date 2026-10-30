@@ -1,0 +1,81 @@
+// Plata palette (values match the rendered Plata-Lumine / Plata-Noir cinnamon.css).
+// $variant is set by cinnamon-light.scss / cinnamon-dark.scss.
+$variant: dark !default;
+$dark: $variant == 'dark';
+
+// global colors
+$fg_color: if($dark, #f5f5f5, #111111);
+$bg_color: if($dark, #080808, #e7e7e7);      // popups, dialogs, switcher, osd
+$base_color: if($dark, #111111, white);      // inner content areas, scroll troughs
+$panel_bg: if($dark, black, #e0e0e0);
+$submenu_bg: if($dark, #1d1d1d, #f8f8f8);
+$tooltip_bg: if($dark, rgba(66, 66, 66, 0.93), rgba(189, 189, 189, 0.93));
+$osd_bg: transparentize($bg_color, 0.07);
+$scrim_color: if($dark, rgba(0, 0, 0, 0.54), rgba(255, 255, 255, 0.28)); // Plata overview/keyboard scrim
+
+// Material text opacities
+$primary_fg: transparentize($fg_color, 0.13);   // 87%
+$secondary_fg: transparentize($fg_color, 0.46); // 54%
+
+// Material state overlays
+$fill_color: transparentize($fg_color, 0.94);   // entry fill (6%)
+$hover_color: transparentize($fg_color, 0.88);  // 12%
+$pressed_color: transparentize($fg_color, 0.75);// 25%
+$track_color: transparentize($fg_color, 0.8);   // 20% (outlines, tracks, indicator lines)
+$hidden_bg: rgba(0, 0, 0, 0.01);                // St needs a non-transparent bg to animate
+
+// colored elements (Material 500s)
+$error_color: #f44336;
+$error_bg_color: #f44336;
+
+$success_color: #4caf50;
+$success_bg_color: #4caf50;
+
+$destructive_bg_color: #f44336;
+$destructive_color: #f44336;
+
+$warning_color: #ff9800;
+$warning_bg_color: #ff9800;
+
+// text-on-surface variants: Material 800/900 in light so labels reach 4.5:1
+$warning_text_color: if($dark, $warning_color, #bf360c);
+$error_text_color: if($dark, $error_color, #c62828);
+$destructive_text_color: if($dark, $destructive_color, #c62828);
+$success_text_color: if($dark, $success_color, #1b5e20);
+
+$notification_badge_bg_color: darken($error_color, 12%); // white 12px text needs 4.5:1
+
+// Plata indigo
+$selection_color: #3f51b5;                       // key selection colour
+$accent_bg_color: $selection_color;
+$accent_color: if($dark, #8796ed, #3f51b5);      // accent used as text on surfaces
+$primary_color: #7986cb;                         // sliders, ripples, desklet highlight
+$accent_text_color: if($dark, #9ea9e4, #1e34a6); // flat accent buttons
+$highlight_color: transparentize($accent_text_color, 0.75); // drop / selection tint
+$purple_color: #673ab7;
+
+$large_icon_color: transparentize($fg_color, 0.6);
+$light_text_color: $secondary_fg;
+
+// used for button, entries and highlighted items (upstream names, Plata overlays)
+$light_bg_color: $hover_color;
+$light_base_color: $hover_color;
+$lighter_bg_color: $hover_color;
+$lightest_bg_color: $pressed_color;
+
+// link colors
+$link_color: if($dark, #52b2ff, #2196f3);
+
+// borders
+$borders_color: if($dark, #0c0c0c, lightgray);
+$frame_color: if($dark, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.15));
+$separator_color: if($dark, #1b1b1b, rgba(0, 0, 0, 0.15));
+
+// shadows (Material elevations as Plata renders them)
+$shadow_color: rgba(0, 0, 0, 0.44);
+$z_dialog_shadow: 0 10px 14px rgba(0, 0, 0, 0.44);
+$z_menu_shadow: 0 4.5px 5.5px rgba(0, 0, 0, 0.38);
+$z_card_shadow: 0 2.5px 4.5px rgba(0, 0, 0, 0.34);
+
+// insensitive state
+$insensitive_fg_color: transparentize($fg_color, 0.72); // 28%

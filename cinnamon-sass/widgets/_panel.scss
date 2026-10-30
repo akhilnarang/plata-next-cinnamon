@@ -1,0 +1,77 @@
+
+
+.panel {
+
+  &-top, &-bottom, &-left, &-right{
+    font-weight: bold;
+    color: $fg_color;
+    background-color: $panel_bg;
+  }
+
+  &Left {
+    spacing: 4px;
+
+    &:dnd { background-color: rgba(244, 67, 54, 0.4); } // For panel edit mode
+    &:ltr { padding-right: 4px; }
+    &:rtl { padding-left: 4px; }
+
+    &.vertical {
+      padding: 0;
+      &:ltr { padding-right: 0px; }
+      &:rtl { padding-left: 0px; }
+    }
+  }
+
+  &Right {
+
+    &:dnd { background-color: rgba(33, 150, 243, 0.4); }
+
+    &:ltr {
+      padding-left: 4px;
+      spacing: 0;
+    }
+    &:rtl {
+      padding-right: 4px;
+      spacing: 0;
+    }
+
+    &.vertical {
+      padding: 0;
+
+      &:ltr {
+        padding-left: 0;
+        spacing: 0;
+      }
+      &:rtl {
+        padding-right: 0;
+        spacing: 0;
+      }
+    }
+  }
+
+  &Center {
+    spacing: 4px;
+
+    &:dnd { background-color: rgba(76, 175, 80, 0.4); }
+
+    &.vertical {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
+  // Plata panels are a flat, borderless slab
+  &-top, &-bottom, &-left, &-right { box-shadow: none; }
+
+  // used when adding a new panel
+  &-dummy {
+    background-color: transparentize($panel_bg, 0.6);
+
+    &:entered { background-color: $highlight_color; }
+  }
+
+  &-status-button {} // used by the keyboard applet but see no reason for it
+}
+
+// this is needed to highlight a specific panel when using the panel settings
+#panel:highlight { background-color: $highlight_color; }

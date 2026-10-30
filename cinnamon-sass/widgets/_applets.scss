@@ -1,0 +1,254 @@
+$applet_separator: $track_color;
+
+//padding and spacing for applets
+$applet_padding: 6px;
+
+.applet {
+
+  &-box {
+    padding: 0 $applet_padding;
+    spacing: $applet_padding;
+    text-align: center;
+
+    &.vertical { padding: $applet_padding 0; }
+
+    color: $fg_color;
+    background-color: $hidden_bg;
+    transition-duration: 170ms;
+
+    &:hover, &:checked { color: $fg_color; background-color: $hidden_bg; }
+
+    &:highlight { background-color: $highlight_color; }
+  }
+
+  &-label { font-weight: bold; }
+  &-icon { color: $fg_color; }
+
+  &-separator {
+    padding: 1px 4px;
+
+    &.vertical { padding: 4px 1px; }
+  }
+
+  &-separator-line {
+    width: 1px;
+    background: $applet_separator;
+
+    &-vertical {
+      height: 1px;
+      background: $applet_separator;
+    }
+  }
+}
+
+// cornerbar applet
+
+.applet-cornerbar {
+  width: $base_margin * 2;
+  background-color: $hover_color;
+  border: 0 none transparent;
+
+  &.vertical { height: $base_margin * 2; }
+
+  &-box {
+    background: none;
+  }
+}
+
+.applet-cornerbar-box:hover > .applet-cornerbar { background-color: $selection_color; }
+
+
+// notification applet
+
+.notification-applet-padding {
+  padding: $base_margin 0 $base_margin $base_margin;
+}
+
+// panel launchers
+
+.panel-launchers {
+  // padding-left: $base_padding;
+  spacing: 2px;
+
+  .launcher {
+    padding: 0 2px;
+    background-color: $hidden_bg;
+    transition-duration: 170ms;
+
+    &:hover { background-color: $hover_color; }
+  }
+
+  &.vertical {
+    padding: 2px 0;
+
+    .launcher { padding: 2px 0; }
+  }
+}
+
+// power applet
+
+.device-box {
+
+  .device-icon {
+    icon-size: to_em(24px);
+    color: $fg_color;
+  }
+
+  .device-labels {
+    margin-left: $base_margin * 2;
+    spacing: $base_margin;
+
+    .primary-label {
+      @extend %heading;
+
+      color: $fg_color;
+    }
+
+    .status-label { color: $light_text_color; }
+  }
+}
+
+// sound applet
+
+.sound-player {
+
+  > StBoxLayout:first-child {
+    spacing: $base_margin;
+    padding: 0 $base_padding;
+  }
+
+  StButton {
+    @extend %button;
+
+    width: 18px;
+    height: 18px;
+    padding: $base_padding;
+    min-height: 0;
+    border-radius: 999px;
+
+
+    StIcon { icon-size: 1em; }
+
+    &:small {
+      @extend %flat_button;
+      width: 16px;
+      height: 16px;
+
+      StIcon { icon-size: 1.2 em;}
+    }
+  }
+
+  &-generic-coverart { background-color: $submenu_bg; }
+
+  &-overlay {
+    width: 290px;
+    padding: $base_padding * 2;
+    spacing: $base_margin;
+    color: $fg_color;
+    background-color: $osd_bg;
+
+    StBoxLayout { padding-top: 2px; }
+    > StBoxLayout { spacing: $base_padding; }
+    StBin > StBoxLayout { spacing: $base_padding; }
+  }
+
+  .slider {
+    height: 4px;
+    -slider-height: 4px;
+    -slider-background-color: transparentize($primary_color, 0.75);
+    -slider-active-background-color: $primary_color;
+    -slider-border-color: transparent;
+    -slider-active-border-color: transparent;
+    -slider-border-width: 0;
+    -slider-handle-radius: 0;
+  }
+}
+
+// spacer applet
+
+.spacer-box {
+  border: 1px solid transparent;
+
+  &:highlight { background-color: $highlight_color; }
+
+  &.edit-mode { border: 1px symbolic; }
+}
+
+// systray
+
+.systray {
+  padding: 0;
+}
+
+// workspace switcher applet
+
+.panel-top,
+.panel-bottom {
+
+  .workspace-switcher { padding: 0 $base_margin;}
+}
+
+// Plata: flat labels, indigo underline marks the current workspace
+.workspace-button {
+  border: 0 none transparent;
+  width: 2em;
+  color: $primary_fg;
+  background-color: $hidden_bg;
+  transition-duration: 170ms;
+
+  &.vertical { height: 2em; }
+
+  &:hover { color: $fg_color; }
+  &:outlined, &:outlined:hover { color: $accent_color; }
+
+  &:shaded { // this is a workspace with no open windows
+    color: $secondary_fg;
+  }
+}
+
+@each $side in top, bottom, left, right {
+  .panel-#{$side} .workspace-button:hover,
+  .panel-#{$side} .workspace-button:outlined { @include edge_line($side, $selection_color); }
+}
+
+.workspace-graph {
+  padding: $base_margin;
+  spacing: $base_margin;
+
+  .workspace {
+    border: 1px solid $track_color;
+    background-color: $panel_bg;
+
+    &:active {
+      border-color: $selection_color;
+      background-color: if($dark, #1e254d, #a4abd3);
+
+      .windows {
+        -active-window-background: $selection_color;
+        -active-window-border: $selection_color;
+        -inactive-window-background: if($dark, #1e254d, #a4abd3);
+        -inactive-window-border: $selection_color;
+      }
+    }
+
+    .windows {
+      -active-window-background: if($dark, #434343, #b2b2b2);
+      -active-window-border: $track_color;
+      -inactive-window-background: if($dark, #242424, #cdcdcd);
+      -inactive-window-border: $track_color;
+    }
+  }
+}
+
+.system-status-icon {
+  icon-size: $scalable_icon-size;
+
+  &.warning { color: $warning_color; }
+  &.error { color: $error_color; }
+}
+
+// Plata indicator line on the screen edge of an open applet
+@each $side in top, bottom, left, right {
+  .panel-#{$side} .applet-box:hover,
+  .panel-#{$side} .applet-box:checked { @include edge_line($side, $selection_color); }
+}
